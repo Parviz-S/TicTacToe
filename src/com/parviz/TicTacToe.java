@@ -18,7 +18,7 @@ public class TicTacToe {
             }
             printBoard(board);
 
-            computerTurn(board);
+            ComputerTurn.normalMove(board);
             if (isGameFinished(board)){
                 break;
             }
@@ -68,18 +68,7 @@ public class TicTacToe {
     }
 
 
-    private static void computerTurn(char[][] board) {
-        Random rand = new Random();
-        int computerMove;
-        do {
-            computerMove = rand.nextInt(9) + 1;
-        } while (!isValidMove(board, Integer.toString(computerMove)));
-        StdOut.println("Computer chose " + computerMove);
-        placeMove(board, Integer.toString(computerMove), 'O');
-    }
-
-
-    private static boolean isValidMove (char[][] board, String position) {
+    static boolean isValidMove(char[][] board, String position) {
         return switch (position) {
             case "1" -> (board[0][0] == ' ');
             case "2" -> (board[0][1] == ' ');
@@ -109,7 +98,7 @@ public class TicTacToe {
     }
 
 
-    private static void placeMove(char[][] board, String position, char symbol) {
+    static void placeMove(char[][] board, String position, char symbol) {
         switch (position) {
             case "1" -> board[0][0] = symbol;
             case "2" -> board[0][1] = symbol;
@@ -120,7 +109,6 @@ public class TicTacToe {
             case "7" -> board[2][0] = symbol;
             case "8" -> board[2][1] = symbol;
             case "9" -> board[2][2] = symbol;
-            default -> StdOut.println(":(");
         }
     }
 
